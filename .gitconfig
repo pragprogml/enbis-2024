@@ -1,0 +1,18 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+	ignorecase = true
+	precomposeunicode = true
+[remote "origin"]
+	url = git@github.com:pragprogml/enbis-2024.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[filter "nbstripout"]
+	clean = \"enbis-2024/.venv/bin/python\" -m nbstripout
+	smudge = cat
+[diff "ipynb"]
+	textconv = \"enbis-2024/.venv/bin/python\" -m nbstripout -t
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main

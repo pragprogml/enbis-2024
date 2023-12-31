@@ -1,0 +1,11 @@
+{
+  "cSpell.enabled": false,
+  "python.languageServer": "Pylance",
+  "python.analysis.extraPaths": [
+    "./src",
+    "./.venv/lib/python3.10/site-packages"
+  ],
+  "[python]": {
+    "editor.formatOnSave": true,
+  }
+}

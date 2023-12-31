@@ -1,0 +1,85 @@
+schema: '2.0'
+stages:
+  evaluate:
+    cmd: poetry run python -m src.stages.evaluate --config=params-dev.yaml
+    deps:
+    - path: data/
+      hash: md5
+      md5: 5c43bbb934a1115ad707427ad40b162f.dir
+      size: 148006354
+      nfiles: 4202
+    - path: models/best_model.pt
+      hash: md5
+      md5: dfb719c68e63f4910da810d1bcd75933
+      size: 6237657
+    - path: src/libs/utils.py
+      hash: md5
+      md5: 8350580a35c9c210f3774104fedba415
+      size: 8129
+    - path: src/libs/visualize.py
+      hash: md5
+      md5: 016570f533b7b3f4c02c73dd0b92435d
+      size: 8194
+    - path: src/stages/evaluate.py
+      hash: md5
+      md5: b9d0ae41cd4d50e15cc16bf76c7d63eb
+      size: 2185
+    params:
+      params.yaml:
+        evaluate:
+          best_model: models/best_model.pt
+          reports_dir: reports
+          metrics_image: yolo_metrics.png
+          predicted_images: predicted_images.png
+    outs:
+    - path: reports/predicted_images.png
+      hash: md5
+      md5: 186216584ea561dea286c986ce91d89c
+      size: 1535159
+    - path: reports/yolo_metrics.png
+      hash: md5
+      md5: 73abbc193dbbc6ccd316b009df17461c
+      size: 20455
+  train:
+    cmd: poetry run python -m src.stages.training --config=params-dev.yaml
+    deps:
+    - path: data/
+      hash: md5
+      md5: bf3787238f8e69ce4a7030025589773f.dir
+      size: 148006334
+      nfiles: 4202
+    - path: params-dev.yaml
+      hash: md5
+      md5: 9aa4bb23e5c201215932814d3694d2cd
+      size: 590
+    - path: params.yaml
+      hash: md5
+      md5: dd1e4ce96e090ffe643f6c2083a1e234
+      size: 591
+    - path: src/libs/utils.py
+      hash: md5
+      md5: 8350580a35c9c210f3774104fedba415
+      size: 8129
+    - path: src/stages/training.py
+      hash: md5
+      md5: ecb24c615d151d3a58f2ed37f79ba543
+      size: 3474
+    params:
+      params.yaml:
+        train:
+          data: data/plugs/dataset.yaml
+          epochs: 100
+          seed: 42
+          batch: 64
+          workers: 4
+          best_model: models/best_model.pt
+          project: enbis-2024-runs
+    outs:
+    - path: models/best_model.onnx
+      hash: md5
+      md5: eb5693b04db18d718d7d841da845de17
+      size: 12238121
+    - path: models/best_model.pt
+      hash: md5
+      md5: 607725bbe917d25e7c80f50871727ad9
+      size: 6237593
