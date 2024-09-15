@@ -1,0 +1,70 @@
+[tool.poetry]
+name = "amlp-2024"
+version = "0.1.1"
+description = ""
+authors = ["Mauro Malvestio <mauro@malvestio.net>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+tabulate = "^0.9.0"
+ultralytics = "^8.2.93"
+cffi = "^1.17.1"
+sahi = "^0.11.18"
+mlflow = "^2.16.1"
+botocore = "^1.35.19"
+dvc = "^3.55.2"
+ipykernel = "^6.29.5"
+python-dotenv = "^1.0.1"
+nbstripout = "^0.7.1"
+gradio = "^4.44.0"
+wandb = "^0.18.0"
+papermill = "^2.6.0"
+fastapi = "^0.114.2"
+onnx = "^1.16.2"
+onnxruntime = "^1.19.2"
+prometheus-fastapi-instrumentator = "^7.0.0"
+pdoc3 = "^0.11.1"
+jupyter = "^1.1.1"
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.5"
+dvc = "^3.55.2"
+nbstripout = "^0.7.1"
+pipreqs = "^0.4.13"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project.urls]
+"Source" = "https://github.com/pragprogml/enbis-2024"
+
+[tool.black]
+line-length = 120
+exclude = '''
+/(
+    \.git
+  | \.mypy_cache
+  | \.tox
+  | venv
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+lint.select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I"
+]
+line-length = 120
+indent-width = 4

@@ -1,0 +1,8 @@
+fastapi[all]==0.114.2
+numpy==1.26.4
+Pillow==10.4.0
+prometheus_client==0.20.0
+prometheus_fastapi_instrumentator==7.0.0
+python-dotenv==1.0.1
+PyYAML==6.0.2
+ultralytics==8.2.93

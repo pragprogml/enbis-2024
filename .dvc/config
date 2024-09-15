@@ -1,0 +1,6 @@
+[core]
+    analytics = false
+    autostage = true
+    remote = test
+['remote "test"']
+    url = /tmp/test

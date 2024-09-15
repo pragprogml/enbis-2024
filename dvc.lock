@@ -1,0 +1,85 @@
+schema: '2.0'
+stages:
+  evaluate:
+    cmd: poetry run python -m src.stages.evaluate --config=params-dev.yaml
+    deps:
+    - path: data/
+      hash: md5
+      md5: 289d183a2b91613020b04d10e81d7263.dir
+      size: 148024321
+      nfiles: 4201
+    - path: models/best_model.pt
+      hash: md5
+      md5: 15baa274e5bc313a386ce41cf5938efa
+      size: 6237657
+    - path: src/libs/utils.py
+      hash: md5
+      md5: 8350580a35c9c210f3774104fedba415
+      size: 8129
+    - path: src/libs/visualize.py
+      hash: md5
+      md5: 016570f533b7b3f4c02c73dd0b92435d
+      size: 8194
+    - path: src/stages/evaluate.py
+      hash: md5
+      md5: b9d0ae41cd4d50e15cc16bf76c7d63eb
+      size: 2185
+    params:
+      params.yaml:
+        evaluate:
+          best_model: models/best_model.pt
+          reports_dir: reports
+          metrics_image: yolo_metrics.png
+          predicted_images: predicted_images.png
+    outs:
+    - path: reports/predicted_images.png
+      hash: md5
+      md5: c6e2bb6760bc716e357359e7944bedc3
+      size: 1414027
+    - path: reports/yolo_metrics.png
+      hash: md5
+      md5: 0015340f6e90ffd8340c3bc901f840f3
+      size: 19907
+  train:
+    cmd: poetry run python -m src.stages.training --config=params-dev.yaml
+    deps:
+    - path: data/
+      hash: md5
+      md5: 4e4baaf1d23d0387157580e51e950808.dir
+      size: 147979541
+      nfiles: 4196
+    - path: params-dev.yaml
+      hash: md5
+      md5: fe4f8e5f112d6653cae53d2b85f7e507
+      size: 581
+    - path: params.yaml
+      hash: md5
+      md5: e91b22531e4e6569bb484b29e68ef122
+      size: 580
+    - path: src/libs/utils.py
+      hash: md5
+      md5: 8350580a35c9c210f3774104fedba415
+      size: 8129
+    - path: src/stages/training.py
+      hash: md5
+      md5: 88951c9290c19ec92526ee4cda759d9b
+      size: 3482
+    params:
+      params.yaml:
+        train:
+          data: data/plugs/dataset.yaml
+          epochs: 100
+          seed: 42
+          batch: 64
+          workers: 4
+          best_model: models/best_model.pt
+          project: runs
+    outs:
+    - path: models/best_model.onnx
+      hash: md5
+      md5: b879db85ae145a859ee20ad9aecfe059
+      size: 12238230
+    - path: models/best_model.pt
+      hash: md5
+      md5: a13e12fa4c8d605d379cdbc052b5634e
+      size: 6247779

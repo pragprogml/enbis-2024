@@ -1,0 +1,25 @@
+pretrained:
+  model: "yolov8n.pt"
+
+data_split:
+  train_path: "data/plugs/train/images"
+  train_labels: "data/plugs/train/labels"
+  val_path: "data/plugs/val/images"
+  val_labels: "data/plugs/val/labels"
+  test_path: "data/plugs/test/images"
+  test_labels: "data/plugs/test/labels"
+
+train:
+  data: "data/plugs/dataset.yaml"
+  epochs: 100
+  seed: 42
+  batch: 64
+  workers: 4
+  best_model: "models/best_model.pt"
+  project: "runs"
+
+evaluate:
+  best_model: "models/best_model.pt"
+  reports_dir: "reports"
+  metrics_image: "yolo_metrics.png"
+  predicted_images: "predicted_images.png"

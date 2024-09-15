@@ -1,0 +1,8 @@
+# shellcheck disable=SC2034
+# shellcheck disable=SC2148
+layout python
+
+ROOT_DIR="/home/user/development/enbis-2024"
+PARAMS="params-dev.yaml"
+VIRTUAL_ENV=.venv
+PATH=$VIRTUAL_ENV/bin:$PATH

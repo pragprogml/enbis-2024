@@ -1,0 +1,28 @@
+stages:
+  train:
+    cmd: poetry run python -m src.stages.training --config=params-dev.yaml
+    deps:
+      - data/
+      - src/libs/utils.py
+      - src/stages/training.py
+      - params-dev.yaml
+      - params.yaml
+    params:
+      - train
+    outs:
+      - models/best_model.pt
+      - models/best_model.onnx
+
+  evaluate:
+    cmd: poetry run python -m src.stages.evaluate --config=params-dev.yaml
+    deps:
+      - data/
+      - models/best_model.pt
+      - src/libs/utils.py
+      - src/libs/visualize.py
+      - src/stages/evaluate.py
+    params:
+      - evaluate
+    outs:
+      - reports/yolo_metrics.png
+      - reports/predicted_images.png
